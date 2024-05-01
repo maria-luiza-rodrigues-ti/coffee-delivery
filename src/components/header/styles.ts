@@ -3,10 +3,15 @@ import styled from "styled-components";
 export const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
-  padding: 2.5rem 0;
+
+  padding: 1.5rem;
 
   max-width: 70rem;
   margin: 0 auto;
+
+  @media screen and (min-width: 1200px) {
+    padding: 2.5rem 0;
+  }
 `
 
 export const LocationAndCartContainer = styled.div`
