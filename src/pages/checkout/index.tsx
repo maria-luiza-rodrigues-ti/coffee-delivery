@@ -3,45 +3,82 @@ import {
   CreditCard,
   CurrencyDollar,
   MapPinLine,
+  Minus,
   Money,
+  Plus,
   Trash,
 } from "@phosphor-icons/react";
 
+import Product1 from "/assets/type_tradicional.png";
+// import Product2 from "/assets/type_tradicional.png";
+
+import {
+  AddressAndPaymentContainer,
+  AddressComplementInputContainer,
+  AddressFormTitleContainer,
+  CEPInput,
+  CheckoutContainer,
+  CityInput,
+  ConfirmOrderButton,
+  FormContainer,
+  FormTitle,
+  InputsContainer,
+  NeighborhoodInput,
+  NumberInput,
+  PaymentFormTitleContainer,
+  PaymentOptionsContainer,
+  PaymentResumeContainer,
+  ProductCardContainer,
+  ProductDetailsContainer,
+  ProductPrice,
+  QuantityContainer,
+  RemoveButton,
+  ResumeContainer,
+  StateInput,
+  StreetInput,
+} from "./styles";
+import { CoffeeQuantity } from "../home/styles";
+
 export function Checkout() {
   return (
-    <main>
-      <section>
-        <h2>Complete seu pedido</h2>
-        <form>
-          <div>
+    <CheckoutContainer>
+      <AddressAndPaymentContainer>
+        <FormTitle>Complete seu pedido</FormTitle>
+        <FormContainer>
+          <AddressFormTitleContainer>
             <MapPinLine size={22} />
             <div>
               <h3>Endereço de entrega</h3>
               <p>Informe o endereço onde deseja receber seu pedido</p>
             </div>
-          </div>
+          </AddressFormTitleContainer>
 
-          <div>
-            <input type="number" placeholder="CEP" />
-            <input type="text" placeholder="Rua" />
-            <input type="number" placeholder="Número" />
-            <input type="text" placeholder="Complemento" />
-            <input type="text" placeholder="Bairro" />
-            <input type="text" placeholder="Cidade" />
-            <input type="text" placeholder="UF" />
-          </div>
-        </form>
+          <InputsContainer>
+            <CEPInput type="number" placeholder="CEP" />
+            <StreetInput type="text" placeholder="Rua" />
+            <NumberInput type="number" placeholder="Número" />
+            <AddressComplementInputContainer>
+              <input type="text" placeholder="Complemento" />
+              <span>Opcional</span>
+            </AddressComplementInputContainer>
+            <NeighborhoodInput type="text" placeholder="Bairro" />
+            <CityInput type="text" placeholder="Cidade" />
+            <StateInput type="text" placeholder="UF" />
+          </InputsContainer>
+        </FormContainer>
 
-        <form>
-          <div>
+        <FormContainer>
+          <PaymentFormTitleContainer>
             <CurrencyDollar size={22} />
-            <h3>Pagamento</h3>
-            <p>
-              O pagamento é feito na entrega. Escolha a forma que deseja pagar
-            </p>
-          </div>
+            <div>
+              <h3>Pagamento</h3>
+              <p>
+                O pagamento é feito na entrega. Escolha a forma que deseja pagar
+              </p>
+            </div>
+          </PaymentFormTitleContainer>
 
-          <ul>
+          <PaymentOptionsContainer>
             <li>
               <button>
                 <CreditCard size={22} />
@@ -60,53 +97,40 @@ export function Checkout() {
                 <span>Dinheiro</span>
               </button>
             </li>
-          </ul>
-        </form>
-      </section>
-      <section>
-        <h2>Cafés selecionados</h2>
-        <div>
-          <ul>
-            <li>
-              <img src="" />
+          </PaymentOptionsContainer>
+        </FormContainer>
+      </AddressAndPaymentContainer>
 
-              <div>
-                <h3>Expresso Tradicional</h3>
-                <div>
-                  <div>
-                    <button>-</button>
+      <PaymentResumeContainer>
+        <FormTitle>Cafés selecionados</FormTitle>
+        <FormContainer>
+          <ul>
+            <ProductCardContainer>
+              <ProductDetailsContainer>
+                <img src={Product1} />
+                <QuantityContainer>
+                  <h3>Expresso Tradicional</h3>
+                  <CoffeeQuantity>
+                    <button>
+                      <Minus size={14} weight="bold" />
+                    </button>
                     <span>0</span>
-                    <button>+</button>
-                  </div>
-                  <button>
+                    <button>
+                      <Plus size={14} weight="bold" />
+                    </button>
+                  </CoffeeQuantity>
+                  <RemoveButton>
                     <Trash size={22} />
                     <span>Remover</span>
-                  </button>
-                </div>
-                <span>R$ 9,90</span>
-              </div>
-            </li>
-            <li>
-              <img src="" />
-
+                  </RemoveButton>
+                </QuantityContainer>
+              </ProductDetailsContainer>
               <div>
-                <h3>Latte</h3>
-                <div>
-                  <div>
-                    <button>-</button>
-                    <span>0</span>
-                    <button>+</button>
-                  </div>
-                  <button>
-                    <Trash size={22} />
-                    <span>Remover</span>
-                  </button>
-                </div>
-                <span>R$ 19,80</span>
+                <ProductPrice>R$ 9,90</ProductPrice>
               </div>
-            </li>
+            </ProductCardContainer>
           </ul>
-          <ul>
+          <ResumeContainer>
             <li>
               <span>Total de itens</span>
               <span>R$ 29,70</span>
@@ -116,13 +140,13 @@ export function Checkout() {
               <span>R$ 3,50</span>
             </li>
             <li>
-              <span>Total</span>
-              <span>R$ 33,20</span>
+              <strong>Total</strong>
+              <strong>R$ 33,20</strong>
             </li>
-          </ul>
-          <button>Confirmar pedido</button>
-        </div>
-      </section>
-    </main>
+          </ResumeContainer>
+          <ConfirmOrderButton>Confirmar pedido</ConfirmOrderButton>
+        </FormContainer>
+      </PaymentResumeContainer>
+    </CheckoutContainer>
   );
 }

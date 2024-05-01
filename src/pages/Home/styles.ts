@@ -261,6 +261,10 @@ export const CoffeeQuantity = styled.div`
   border-radius: 6px;
   padding: .5rem;
 
+  display: flex;
+  align-items: center;
+  gap:.5rem;
+
   button {
     border: none;
     background: transparent;
