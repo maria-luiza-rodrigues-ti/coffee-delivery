@@ -23,6 +23,7 @@ import {
   CoffeeTagsContainer,
   CoffeesList,
   CoffeesListContainer,
+  ImageIntroSection,
   InfoIntroductionSection,
   IntroductionSection,
   ShoppingDetailsContainer,
@@ -82,9 +83,9 @@ export function Home() {
             </ul>
           </InfoIntroductionSection>
 
-          <div>
+          <ImageIntroSection>
             <img src={CoffeeImage} />
-          </div>
+          </ImageIntroSection>
         </IntroductionSection>
 
         <CoffeesListContainer>

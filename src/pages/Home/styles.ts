@@ -16,22 +16,35 @@ export const BackgroundImage = styled.div`
 export const IntroductionSection = styled.section`
   display: flex;
   justify-content: center;
-  gap: 3.5rem;
+  flex-wrap: wrap-reverse;
+  gap: 2.5rem;
 
   width: 100%;
   max-width: 70rem;
 
   margin: 0 auto;
-  padding: 5.75rem 0;
+  padding: 2rem 0 0;
 
   position: relative;
+
+  @media screen and (min-width: 1200px) {
+    gap: 3.5rem;
+
+    padding: 5.75rem 0;
+
+    flex-wrap: nowrap;
+  }
 `
 
 export const InfoIntroductionSection = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 0 1rem;
 
-  width: 52.5%;
+  @media screen and (min-width: 1200px) {
+    width: 52.5%;
+    padding: 0;
+  }
 
   h1 {
     font-family: 'Baloo 2', cursive;
@@ -49,7 +62,11 @@ export const InfoIntroductionSection = styled.div`
     line-height: 130%;
     color: ${(props) => props.theme['base-subtitle']};
 
-    margin-bottom: 4.125rem;
+    margin-bottom: 2.5rem;
+
+    @media screen and (min-width: 1200px) {
+      margin-bottom: 4.125rem;
+    }
   }
 
   ul {
@@ -72,6 +89,13 @@ export const InfoIntroductionSection = styled.div`
     font-family: 'Roboto', sans-serif;
     line-height: 130%;
     color: ${(props) => props.theme['base-text']};
+  }
+`
+
+export const ImageIntroSection = styled.div`
+  padding: 0 1rem;
+  img {
+    width: 100%;
   }
 `
 
@@ -100,11 +124,17 @@ export const ShoppingDetailsContainer = styled.div<BackgroundColorProps>`
 export const CoffeesListContainer = styled.section`
   max-width: 70rem;
   margin: 0 auto;
-  padding: 2.5rem 0 9.875rem;
+  padding: 2.5rem 1rem 4.5rem;
 
   display: flex;
   flex-direction: column;
-  gap: 3.375rem;
+  gap: 3.5rem;
+
+  @media screen and (min-width: 1200px) {
+    padding: 2.5rem 0 9.875rem;
+
+    gap: 3.375rem;
+  }
 
 
   h2 {
@@ -118,7 +148,13 @@ export const CoffeesListContainer = styled.section`
 export const CoffeesList = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 2.5rem 2rem;
+  justify-content: center;
+  gap: 2.5rem;
+
+  @media screen and (min-width: 1200px) {
+    justify-content: start;
+    gap: 2.5rem 2rem;
+  }
 `
 
 export const CoffeeCard = styled.li`
