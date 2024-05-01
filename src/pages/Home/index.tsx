@@ -1,16 +1,45 @@
-import { Coffee, Package, ShoppingCart, Timer } from "@phosphor-icons/react";
+import {
+  Coffee,
+  Minus,
+  Package,
+  Plus,
+  ShoppingCart,
+  Timer,
+} from "@phosphor-icons/react";
 
 import CoffeeImage from "/assets/coffee-image.png";
+import data from "../../../coffees.json";
 
 import { Header } from "../../components/header";
 import {
   BackgroundImage,
+  CartButton,
+  CoffeeCard,
+  CoffeeDetailsContainer,
+  CoffeePrice,
+  CoffeePriceContainer,
+  CoffeeQuantity,
+  CoffeeTags,
+  CoffeeTagsContainer,
+  CoffeesList,
+  CoffeesListContainer,
   InfoIntroductionSection,
   IntroductionSection,
   ShoppingDetailsContainer,
 } from "./styles";
 
+interface Coffee {
+  id: number;
+  image: string;
+  tags: string[];
+  title: string;
+  description: string;
+  price: string;
+}
+
 export function Home() {
+  const { coffees } = data;
+
   return (
     <>
       <Header />
@@ -26,26 +55,26 @@ export function Home() {
 
             <ul>
               <li>
-                <ShoppingDetailsContainer backgroundColor="yellow-dark">
+                <ShoppingDetailsContainer background-color="yellow-dark">
                   <ShoppingCart weight="fill" color="#ffffff" />
                 </ShoppingDetailsContainer>
 
                 <span>Compra simples e segura</span>
               </li>
               <li>
-                <ShoppingDetailsContainer backgroundColor="base-text">
+                <ShoppingDetailsContainer background-color="base-text">
                   <Package weight="fill" color="#ffffff" />
                 </ShoppingDetailsContainer>
                 <span>Embalagem mantém o café intacto</span>
               </li>
               <li>
-                <ShoppingDetailsContainer backgroundColor="yellow">
+                <ShoppingDetailsContainer background-color="yellow">
                   <Timer weight="fill" color="#ffffff" />
                 </ShoppingDetailsContainer>
                 <span>Entrega rápida e rastreada</span>
               </li>
               <li>
-                <ShoppingDetailsContainer backgroundColor="purple">
+                <ShoppingDetailsContainer background-color="purple">
                   <Coffee weight="fill" color="#ffffff" />
                 </ShoppingDetailsContainer>
                 <span>O café chega fresquinho até você</span>
@@ -58,26 +87,47 @@ export function Home() {
           </div>
         </IntroductionSection>
 
-        <section>
-          <h2>Nossos cafes</h2>
-          <ul>
-            <li>
-              <img src="" />
-              <span>Tradicional</span>
-              <div>
-                <h3>Expresso Tradicional</h3>
-                <p>O tradicional cafe com o quarto do seu lanche</p>
-              </div>
-              <div>
-                <span>R$ 9,90</span>
-                <div>
-                  <span>1</span>
-                </div>
-                <button>Carrinho</button>
-              </div>
-            </li>
-          </ul>
-        </section>
+        <CoffeesListContainer>
+          <h2>Nossos cafés</h2>
+          <CoffeesList>
+            {coffees.map((coffee: Coffee) => {
+              return (
+                <CoffeeCard key={coffee.id}>
+                  <img src={coffee.image} />
+                  <CoffeeTagsContainer>
+                    {coffee.tags.map((tag) => {
+                      return <CoffeeTags key={tag}>{tag}</CoffeeTags>;
+                    })}
+                  </CoffeeTagsContainer>
+
+                  <CoffeeDetailsContainer>
+                    <h3>{coffee.title}</h3>
+                    <p>{coffee.description}</p>
+                  </CoffeeDetailsContainer>
+                  <CoffeePriceContainer>
+                    <CoffeePrice>
+                      R$ <span>{coffee.price}</span>
+                    </CoffeePrice>
+                    <div>
+                      <CoffeeQuantity>
+                        <button>
+                          <Minus size={14} weight="bold" />
+                        </button>
+                        <span>0</span>
+                        <button>
+                          <Plus size={14} weight="bold" />
+                        </button>
+                      </CoffeeQuantity>
+                      <CartButton>
+                        <ShoppingCart size={22} weight="fill" color="#ffffff" />
+                      </CartButton>
+                    </div>
+                  </CoffeePriceContainer>
+                </CoffeeCard>
+              );
+            })}
+          </CoffeesList>
+        </CoffeesListContainer>
       </main>
     </>
   );
