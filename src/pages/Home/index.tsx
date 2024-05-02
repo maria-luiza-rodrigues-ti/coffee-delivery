@@ -23,6 +23,7 @@ export interface CoffeeProps {
   title: string;
   description: string;
   price: string;
+  quantity?: number;
 }
 
 export function Home() {

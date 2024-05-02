@@ -17,6 +17,10 @@ interface CoffeeCardProps {
 }
 
 export function CoffeeCard({ coffee }: CoffeeCardProps) {
+  function addProductToCart() {
+    console.log("Adicionado ao carrinho");
+  }
+
   return (
     <CoffeeCardContainer key={coffee.id}>
       <img src={coffee.image} />
@@ -36,7 +40,7 @@ export function CoffeeCard({ coffee }: CoffeeCardProps) {
         </CoffeePrice>
         <div>
           <Quantity />
-          <CartButton>
+          <CartButton onClick={addProductToCart}>
             <ShoppingCart size={22} weight="fill" color="#ffffff" />
           </CartButton>
         </div>

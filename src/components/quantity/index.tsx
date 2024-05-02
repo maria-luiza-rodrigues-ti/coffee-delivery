@@ -1,19 +1,19 @@
 import { Minus, Plus } from "@phosphor-icons/react";
 import { CoffeeQuantity } from "./styles";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { ProductContext } from "../../context/product-context";
 
 export function Quantity() {
-  const [productQuantity, setProductQuantity] = useState(1);
+  const { quantity } = useContext(ProductContext);
+  const [productQuantity, setProductQuantity] = useState(quantity);
+
   function removeProductQuantity() {
-    setProductQuantity((state) => {
-      if (state <= 0) return state;
-      return state - 1;
-    });
+    if (productQuantity === 0) return;
+
+    setProductQuantity(productQuantity - 1);
   }
   function addProductQuantity() {
-    setProductQuantity((state) => {
-      return state + 1;
-    });
+    setProductQuantity(productQuantity + 1);
   }
 
   return (
