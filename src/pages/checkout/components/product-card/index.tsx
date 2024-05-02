@@ -1,6 +1,6 @@
-import { Minus, Plus, Trash } from "@phosphor-icons/react";
+import { Trash } from "@phosphor-icons/react";
 import Product1 from "/assets/type_tradicional.png";
-import { CoffeeQuantity } from "../../../home/components/coffee-card";
+
 import {
   ProductCardContainer,
   ProductDetailsContainer,
@@ -8,6 +8,7 @@ import {
   RemoveButton,
   ProductPrice,
 } from "./styles";
+import { Quantity } from "../../../../components/quantity";
 
 export function ProductCard() {
   return (
@@ -16,15 +17,7 @@ export function ProductCard() {
         <img src={Product1} />
         <QuantityContainer>
           <h3>Expresso Tradicional</h3>
-          <CoffeeQuantity>
-            <button>
-              <Minus size={14} weight="bold" />
-            </button>
-            <span>0</span>
-            <button>
-              <Plus size={14} weight="bold" />
-            </button>
-          </CoffeeQuantity>
+          <Quantity />
           <RemoveButton>
             <Trash size={16} />
             <span>Remover</span>

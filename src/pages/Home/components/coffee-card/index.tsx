@@ -1,4 +1,4 @@
-import { Minus, Plus, ShoppingCart } from "@phosphor-icons/react";
+import { ShoppingCart } from "@phosphor-icons/react";
 import {
   CoffeeCardContainer,
   CoffeeTagsContainer,
@@ -6,11 +6,11 @@ import {
   CoffeeDetailsContainer,
   CoffeePriceContainer,
   CoffeePrice,
-  CoffeeQuantity,
   CartButton,
 } from "./styles";
 
 import { CoffeeProps } from "../..";
+import { Quantity } from "../../../../components/quantity";
 
 interface CoffeeCardProps {
   coffee: CoffeeProps;
@@ -35,15 +35,7 @@ export function CoffeeCard({ coffee }: CoffeeCardProps) {
           R$ <span>{coffee.price}</span>
         </CoffeePrice>
         <div>
-          <CoffeeQuantity>
-            <button>
-              <Minus size={14} weight="bold" />
-            </button>
-            <span>0</span>
-            <button>
-              <Plus size={14} weight="bold" />
-            </button>
-          </CoffeeQuantity>
+          <Quantity />
           <CartButton>
             <ShoppingCart size={22} weight="fill" color="#ffffff" />
           </CartButton>
@@ -52,4 +44,3 @@ export function CoffeeCard({ coffee }: CoffeeCardProps) {
     </CoffeeCardContainer>
   );
 }
-export { CoffeeQuantity };

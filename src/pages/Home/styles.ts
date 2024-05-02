@@ -107,7 +107,7 @@ export const BACKGROUND_COLORS = {
 } as const;
 
 export interface BackgroundColorProps {
-  "backgroundColor" : keyof typeof BACKGROUND_COLORS;
+  circlecolor: keyof typeof BACKGROUND_COLORS;
 }
 
 export const ShoppingDetailsContainer = styled.div<BackgroundColorProps>`
@@ -115,7 +115,7 @@ export const ShoppingDetailsContainer = styled.div<BackgroundColorProps>`
 
   border-radius: 50%;
 
-  background: ${(props) => props.theme[BACKGROUND_COLORS[props['backgroundColor']]]};
+  background: ${(props) => props.theme[BACKGROUND_COLORS[props['circlecolor']]]};	
 
   display: flex;
   align-items: center;

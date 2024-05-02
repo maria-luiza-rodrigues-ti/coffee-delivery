@@ -88,7 +88,7 @@ export const IconContainer = styled.div<BackgroundColorProps>`
 
   border-radius: 50%;
 
-  background: ${(props) => props.theme[BACKGROUND_COLORS[props['backgroundColor']]]};
+  background: ${(props) => props.theme[BACKGROUND_COLORS[props['circlecolor']]]};
 
   display: flex;
   align-items: center;

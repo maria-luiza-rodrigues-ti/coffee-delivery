@@ -23,7 +23,7 @@ export function Success() {
           <BorderOrderDetailsContainer>
             <OrderDetailsContainer>
               <li>
-                <IconContainer backgroundColor="purple">
+                <IconContainer circlecolor="purple">
                   <MapPin size={22} weight="fill" color="#ffffff" />
                 </IconContainer>
                 <div>
@@ -34,7 +34,7 @@ export function Success() {
                 </div>
               </li>
               <li>
-                <IconContainer backgroundColor="yellow">
+                <IconContainer circlecolor="yellow">
                   <Timer size={22} weight="fill" color="#ffffff" />
                 </IconContainer>
                 <div>
@@ -45,7 +45,7 @@ export function Success() {
                 </div>
               </li>
               <li>
-                <IconContainer backgroundColor="yellow-dark">
+                <IconContainer circlecolor="yellow-dark">
                   <CurrencyDollar size={22} color="#ffffff" />
                 </IconContainer>
                 <div>
