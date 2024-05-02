@@ -1,26 +1,13 @@
-import {
-  Coffee,
-  Minus,
-  Package,
-  Plus,
-  ShoppingCart,
-  Timer,
-} from "@phosphor-icons/react";
+import { Coffee, Package, ShoppingCart, Timer } from "@phosphor-icons/react";
 
 import CoffeeImage from "/assets/coffee-image.png";
 
 import data from "../../../coffees.json";
 
+import { CoffeeCard } from "./components/coffee-card";
+
 import {
   BackgroundImage,
-  CartButton,
-  CoffeeCard,
-  CoffeeDetailsContainer,
-  CoffeePrice,
-  CoffeePriceContainer,
-  CoffeeQuantity,
-  CoffeeTags,
-  CoffeeTagsContainer,
   CoffeesList,
   CoffeesListContainer,
   ImageIntroSection,
@@ -29,7 +16,7 @@ import {
   ShoppingDetailsContainer,
 } from "./styles";
 
-interface Coffee {
+export interface CoffeeProps {
   id: number;
   image: string;
   tags: string[];
@@ -89,41 +76,8 @@ export function Home() {
       <CoffeesListContainer>
         <h2>Nossos cafés</h2>
         <CoffeesList>
-          {coffees.map((coffee: Coffee) => {
-            return (
-              <CoffeeCard key={coffee.id}>
-                <img src={coffee.image} />
-                <CoffeeTagsContainer>
-                  {coffee.tags.map((tag) => {
-                    return <CoffeeTags key={tag}>{tag}</CoffeeTags>;
-                  })}
-                </CoffeeTagsContainer>
-
-                <CoffeeDetailsContainer>
-                  <h3>{coffee.title}</h3>
-                  <p>{coffee.description}</p>
-                </CoffeeDetailsContainer>
-                <CoffeePriceContainer>
-                  <CoffeePrice>
-                    R$ <span>{coffee.price}</span>
-                  </CoffeePrice>
-                  <div>
-                    <CoffeeQuantity>
-                      <button>
-                        <Minus size={14} weight="bold" />
-                      </button>
-                      <span>0</span>
-                      <button>
-                        <Plus size={14} weight="bold" />
-                      </button>
-                    </CoffeeQuantity>
-                    <CartButton>
-                      <ShoppingCart size={22} weight="fill" color="#ffffff" />
-                    </CartButton>
-                  </div>
-                </CoffeePriceContainer>
-              </CoffeeCard>
-            );
+          {coffees.map((coffee: CoffeeProps) => {
+            return <CoffeeCard key={coffee.id} coffee={coffee} />;
           })}
         </CoffeesList>
       </CoffeesListContainer>
