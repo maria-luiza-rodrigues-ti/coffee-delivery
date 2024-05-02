@@ -2,11 +2,19 @@ import styled from "styled-components";
 
 export const CheckoutContainer = styled.main`
   max-width: 70rem;
-  margin: 0 auto;
-  height: 100vh;
+  margin: 0 auto 5rem;
+  padding: 0 1rem;
 
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 2rem;
+
+  @media  (min-width: 1200px) {
+    margin: 0 auto 10rem;
+
+    padding: 0;
+  }
 `
 
 export const AddressAndPaymentContainer = styled.section`
@@ -14,7 +22,11 @@ export const AddressAndPaymentContainer = styled.section`
   flex-direction: column;
 
   width: 100%;
-  max-width: 40rem;
+
+  @media  (min-width: 1200px) {
+    max-width: 40rem;
+  }
+
 `
 
 export const FormTitle = styled.h2`
@@ -57,9 +69,17 @@ export const AddressFormTitleContainer = styled.div`
 `
 
 export const InputsContainer = styled.div`
-  display: grid;
-  grid-template-columns: minmax(auto, 200px) auto minmax(auto, 60px);
-  gap: 1rem .75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  position: relative;
+
+  @media (min-width: 1200px) {
+    display: grid;
+    grid-template-columns: minmax(auto, 200px) auto minmax(auto, 60px);
+    gap: 1rem .75rem;
+  }
 `
 
 export const BaseInput = styled.input`
@@ -105,26 +125,40 @@ export const AddressComplementInput = styled(BaseInput)`
 `
 
 export const OpcionalLabelContainer = styled.div`
-  grid-column: 2 / 4;
-  grid-row: 3 / 4;
   z-index: 10;
 
-  position: relative;
+  position: absolute;
+  top: 50%;
+  right: -0.5rem;
+  transform: translate(-50%, -50%);
 
   max-width: max-content;
   max-height: max-content;
   justify-self: end;
 
-  span {
-    position: absolute;
-    right: .75rem;
-    top: .9375rem;
-    z-index: 10;
+  @media (min-width: 1200px) {
+    grid-column: 2 / 4;
+    grid-row: 3 / 4;
 
+    position: relative;
+    top: 0;
+    right: 0;
+
+    transform: translate(0, 0);
+  }
+
+  span {
     display: block;
     font-size: .75rem;
     font-style: italic;
     color: ${(props) => props.theme['base-label']};
+
+    @media (min-width: 1200px) {
+      position: absolute;
+      z-index: 10;
+      right: .75rem;
+      top: .9375rem;
+    }
   }
 `
 
@@ -152,11 +186,18 @@ export const PaymentFormTitleContainer = styled(AddressFormTitleContainer)`
 
 export const PaymentOptionsContainer = styled.ul`
   display: flex;
+  flex-direction: column;
   gap: .75rem;
+
+  @media (min-width: 1200px) {
+    flex-direction: row;
+  }
 
   li {
     list-style: none;
     flex: 1;
+
+    min-width: 11.25rem;
   }
 
   button {
@@ -195,7 +236,11 @@ export const PaymentOptionsContainer = styled.ul`
 `
 
 export const PaymentResumeContainer = styled(AddressAndPaymentContainer)`
-  max-width: 28rem;
+  width: 100%;
+
+  @media  (min-width: 1200px) {
+    max-width: 28rem;
+  }
 `
 
 export const ProductCardContainer = styled.li`

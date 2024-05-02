@@ -9,7 +9,7 @@ export const HeaderContainer = styled.header`
   max-width: 70rem;
   margin: 0 auto;
 
-  @media screen and (min-width: 1200px) {
+  @media  (min-width: 1200px) {
     padding: 2.5rem 0;
   }
 `

@@ -11,7 +11,7 @@ export const SuccessSection = styled.section`
   margin: 0 auto 5rem;
   padding: 1rem;
 
-  @media screen and (min-width: 1200px) {
+  @media  (min-width: 1200px) {
     gap: 6.375rem;
 
     margin: 0 auto;
@@ -66,7 +66,7 @@ export const OrderDetailsContainer = styled.ul`
   flex-direction: column;
   gap: 2rem;
 
-  @media screen and (min-width: 1200px) {
+  @media  (min-width: 1200px) {
     padding: 2.5rem;
   }
 

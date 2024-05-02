@@ -27,7 +27,7 @@ export const IntroductionSection = styled.section`
 
   position: relative;
 
-  @media screen and (min-width: 1200px) {
+  @media  (min-width: 1200px) {
     gap: 3.5rem;
 
     padding: 5.75rem 0;
@@ -41,7 +41,7 @@ export const InfoIntroductionSection = styled.div`
   flex-direction: column;
   padding: 0 1rem;
 
-  @media screen and (min-width: 1200px) {
+  @media  (min-width: 1200px) {
     width: 52.5%;
     padding: 0;
   }
@@ -64,7 +64,7 @@ export const InfoIntroductionSection = styled.div`
 
     margin-bottom: 2.5rem;
 
-    @media screen and (min-width: 1200px) {
+    @media  (min-width: 1200px) {
       margin-bottom: 4.125rem;
     }
   }
@@ -130,7 +130,7 @@ export const CoffeesListContainer = styled.section`
   flex-direction: column;
   gap: 3.5rem;
 
-  @media screen and (min-width: 1200px) {
+  @media  (min-width: 1200px) {
     padding: 2.5rem 0 9.875rem;
 
     gap: 3.375rem;
@@ -151,7 +151,7 @@ export const CoffeesList = styled.div`
   justify-content: center;
   gap: 2.5rem;
 
-  @media screen and (min-width: 1200px) {
+  @media  (min-width: 1200px) {
     justify-content: start;
     gap: 2.5rem 2rem;
   }
