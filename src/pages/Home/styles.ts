@@ -50,7 +50,7 @@ export const InfoIntroductionSection = styled.div`
     font-family: 'Baloo 2', cursive;
     font-weight: 800;
     font-size: 3rem;
-    line-height: 130%;
+    
     color: ${(props) => props.theme['base-title']};
 
     margin-bottom: 1rem;
@@ -59,7 +59,7 @@ export const InfoIntroductionSection = styled.div`
   p {
     font-family: 'Roboto', sans-serif;
     font-size: 1.25rem;
-    line-height: 130%;
+    
     color: ${(props) => props.theme['base-subtitle']};
 
     margin-bottom: 2.5rem;
@@ -87,7 +87,7 @@ export const InfoIntroductionSection = styled.div`
 
   span {
     font-family: 'Roboto', sans-serif;
-    line-height: 130%;
+    
     color: ${(props) => props.theme['base-text']};
   }
 `
@@ -141,7 +141,7 @@ export const CoffeesListContainer = styled.section`
     font-family: 'Baloo 2', cursive;
     font-weight: 800;
     font-size: 2.5rem;
-    line-height: 130%;
+    
     color: ${(props) => props.theme['base-subtitle']};
   }
 `
@@ -197,7 +197,7 @@ export const CoffeeTags = styled.span`
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
   font-size: 0.625rem;
-  line-height: 130%;
+  
   text-transform: uppercase;
 `
 
@@ -214,14 +214,14 @@ export const CoffeeDetailsContainer = styled.div`
     font-family: 'Baloo 2', cursive;
     font-weight: 700;
     font-size: 1.25rem;
-    line-height: 130%;
+    
     color: ${(props) => props.theme['base-subtitle']};
   }
 
   p {
     font-family: 'Roboto', sans-serif;
     font-size: .875rem;
-    line-height: 130%;
+    
     color: ${(props) => props.theme['base-label']};
 
     text-align: center;
@@ -246,7 +246,7 @@ export const CoffeePrice = styled.span`
   font-family: 'Roboto', sans-serif;
   font-size: .875rem;
   font-weight: 400;
-  line-height: 130%;
+  
   color: ${(props) => props.theme['base-text']};
 
   span{
@@ -277,7 +277,7 @@ export const CoffeeQuantity = styled.div`
 
     cursor: pointer;
 
-    transition: all .3s;
+    transition: all .3s ease-in-out;
 
     &:hover svg {
       fill: ${(props) => props.theme['purple-dark']};
@@ -291,7 +291,7 @@ export const CoffeeQuantity = styled.div`
   span {
     display: inline-block;
     font-family: 'Roboto', sans-serif;
-    line-height: 130%;
+    
     color: ${(props) => props.theme['base-title']};
   }
 `
@@ -308,7 +308,7 @@ export const CartButton = styled.button`
   padding: .5rem;
 
   cursor: pointer;
-  transition: all .3s;
+  transition: all .3s ease-in-out;
 
   &:hover {
     background-color: ${(props) => props.theme['purple-dark']};

@@ -22,7 +22,6 @@ export const FormTitle = styled.h2`
     font-size: 1.125rem;
     font-weight: 700;
     color: ${(props) => props.theme['base-subtitle']};
-    line-height: 130%;
 
     margin-bottom: 1rem;
 `
@@ -48,13 +47,12 @@ export const AddressFormTitleContainer = styled.div`
 
   h3 {
     font-weight: 400;
-    line-height: 130%;
+
     color: ${(props) => props.theme['base-subtitle']};
   }
 
   p {
     font-size: .875rem;
-    line-height: 130%;
   }
 `
 
@@ -73,12 +71,17 @@ export const BaseInput = styled.input`
   padding: .75rem;
 
   font-size: .874rem;
-  line-height: 130%;
 
   color: ${(props) => props.theme['base-text']};
 
+  transition: all .2s;
+
   &::placeholder {
     color: ${(props) => props.theme['base-label']};
+  }
+
+  &:focus, &:focus-visible {
+    outline-color: ${(props) => props.theme['yellow-dark']};
   }
 `
 
@@ -96,41 +99,35 @@ export const NumberInput = styled(BaseInput)`
   grid-row: 3 / 4;
 `
 
-export const AddressComplementInputContainer = styled.div`
-  
-  background: ${(props) => props.theme['base-input']};
-
-  border: 1px solid ${(props) => props.theme['base-button']};
-  border-radius: 4px;
-
-  padding: .75rem;
-
-  font-size: .874rem;
-  line-height: 130%;
-
-  color: ${(props) => props.theme['base-text']};
-
+export const AddressComplementInput = styled(BaseInput)`
   grid-column: 2 / 4;
   grid-row: 3 / 4;
+`
 
-  display: flex;
-  align-items: center;
-  gap: 4px;
+export const OpcionalLabelContainer = styled.div`
+  grid-column: 2 / 4;
+  grid-row: 3 / 4;
+  z-index: 10;
 
-  input {
-    background: transparent;
-    border: none;
+  position: relative;
 
-    width: 100%;
-  }
+  max-width: max-content;
+  max-height: max-content;
+  justify-self: end;
 
   span {
-    font-style: italic;
+    position: absolute;
+    right: .75rem;
+    top: .9375rem;
+    z-index: 10;
+
+    display: block;
     font-size: .75rem;
-    line-height: 130%;
+    font-style: italic;
     color: ${(props) => props.theme['base-label']};
   }
 `
+
 
 export const NeighborhoodInput = styled(BaseInput)`
   grid-column: 1 / 2;
@@ -159,19 +156,30 @@ export const PaymentOptionsContainer = styled.ul`
 
   li {
     list-style: none;
+    flex: 1;
   }
 
   button {
     background: ${(props) => props.theme['base-button']};
 
-    border: none;
+    border: 1px solid ${(props) => props.theme['base-button']};
     border-radius: 6px;
 
-    padding: 1rem;
+    padding: .875rem;
 
     display: flex;
     align-items: center;
     gap: .75rem;
+
+    width: 100%;
+
+    transition: all .3s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+      background: ${(props) => props.theme['purple-light']};
+      border-color: ${(props) => props.theme['purple']};
+    }
   }
 
   svg {
@@ -180,7 +188,6 @@ export const PaymentOptionsContainer = styled.ul`
 
   span {
     font-size: .75rem;
-    line-height: 160%;
     text-transform: uppercase;
 
     color: ${(props) => props.theme['base-text']};
@@ -220,7 +227,6 @@ export const QuantityContainer = styled.div`
 
     h3 {
     grid-column: 1 / 3;
-    line-height: 130%;
     font-weight: 400;
   }
 `
@@ -242,8 +248,7 @@ export const RemoveButton = styled.button`
   }
 
   span {
-    font-size: .75m;
-    line-height: 160%;
+    font-size: .75rem;
     text-transform: uppercase;
     color: ${(props) => props.theme['base-text']};
   }
@@ -251,7 +256,6 @@ export const RemoveButton = styled.button`
 
 export const ProductPrice = styled.span`
   font-weight: 700;
-  line-height: 130%;
 `
 
 export const ResumeContainer = styled.ul`
@@ -267,14 +271,12 @@ export const ResumeContainer = styled.ul`
   }
 
   span {
-    line-height: 130%;
     color: ${(props) => props.theme['base-text']};
   }
 
   strong {
     font-size: 1.25rem;
     color: ${(props) => props.theme['base-subtitle']};
-    line-height: 130%;
   }
 `
 
@@ -294,6 +296,11 @@ export const ConfirmOrderButton = styled.button`
   color: ${(props) => props.theme.white};
   font-size: .875rem;
   font-weight: 700;
-  line-height: 160%;
   text-transform: uppercase;
+
+  transition: all .3s ease-in-out;
+
+  &:hover {
+    background: ${(props) => props.theme['yellow-dark']};
+  }
 `

@@ -14,7 +14,7 @@ import Product1 from "/assets/type_tradicional.png";
 
 import {
   AddressAndPaymentContainer,
-  AddressComplementInputContainer,
+  AddressComplementInput,
   AddressFormTitleContainer,
   CEPInput,
   CheckoutContainer,
@@ -25,6 +25,7 @@ import {
   InputsContainer,
   NeighborhoodInput,
   NumberInput,
+  OpcionalLabelContainer,
   PaymentFormTitleContainer,
   PaymentOptionsContainer,
   PaymentResumeContainer,
@@ -57,10 +58,10 @@ export function Checkout() {
             <CEPInput type="number" placeholder="CEP" />
             <StreetInput type="text" placeholder="Rua" />
             <NumberInput type="number" placeholder="Número" />
-            <AddressComplementInputContainer>
-              <input type="text" placeholder="Complemento" />
+            <AddressComplementInput type="text" placeholder="Complemento" />
+            <OpcionalLabelContainer>
               <span>Opcional</span>
-            </AddressComplementInputContainer>
+            </OpcionalLabelContainer>
             <NeighborhoodInput type="text" placeholder="Bairro" />
             <CityInput type="text" placeholder="Cidade" />
             <StateInput type="text" placeholder="UF" />
@@ -120,7 +121,7 @@ export function Checkout() {
                     </button>
                   </CoffeeQuantity>
                   <RemoveButton>
-                    <Trash size={22} />
+                    <Trash size={16} />
                     <span>Remover</span>
                   </RemoveButton>
                 </QuantityContainer>
