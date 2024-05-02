@@ -10,7 +10,7 @@ import {
   CartButton,
 } from "./styles";
 
-import { CoffeeProps } from "..";
+import { CoffeeProps } from "../..";
 
 interface CoffeeCardProps {
   coffee: CoffeeProps;
@@ -52,3 +52,4 @@ export function CoffeeCard({ coffee }: CoffeeCardProps) {
     </CoffeeCardContainer>
   );
 }
+export { CoffeeQuantity };
