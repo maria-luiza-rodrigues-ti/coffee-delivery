@@ -4,10 +4,19 @@ import { BACKGROUND_COLORS, BackgroundColorProps } from "../home/styles";
 
 export const SuccessSection = styled.section`
   display: flex;
-  gap: 6.375rem;
+  flex-wrap: wrap-reverse;
+  gap: 3rem;
 
   max-width: 70rem;
-  margin: 0 auto;
+  margin: 0 auto 5rem;
+  padding: 1rem;
+
+  @media screen and (min-width: 1200px) {
+    gap: 6.375rem;
+
+    margin: 0 auto;
+    padding: 0;
+  }
 
   & > div {
     width: 100%;
@@ -43,7 +52,7 @@ export const BorderOrderDetailsContainer = styled.div`
 `
 
 export const OrderDetailsContainer = styled.ul`
-  padding: 2.5rem;
+  padding: 2rem 1.5rem;
 
   max-width: 32.875rem;
   width: 100%;
@@ -56,6 +65,10 @@ export const OrderDetailsContainer = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+
+  @media screen and (min-width: 1200px) {
+    padding: 2.5rem;
+  }
 
   li {
     list-style: none;
@@ -83,4 +96,8 @@ export const IconContainer = styled.div<BackgroundColorProps>`
 
 export const DeliveryImageContainer = styled.div`
   align-self: flex-end;
+
+  img {
+    width: 100%;
+  }
 `
