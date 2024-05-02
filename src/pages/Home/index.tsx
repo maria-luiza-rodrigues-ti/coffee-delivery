@@ -54,26 +54,26 @@ export function Home() {
 
           <ul>
             <li>
-              <ShoppingDetailsContainer background-color="yellow-dark">
+              <ShoppingDetailsContainer backgroundColor="yellow-dark">
                 <ShoppingCart weight="fill" color="#ffffff" />
               </ShoppingDetailsContainer>
 
               <span>Compra simples e segura</span>
             </li>
             <li>
-              <ShoppingDetailsContainer background-color="base-text">
+              <ShoppingDetailsContainer backgroundColor="base-text">
                 <Package weight="fill" color="#ffffff" />
               </ShoppingDetailsContainer>
               <span>Embalagem mantém o café intacto</span>
             </li>
             <li>
-              <ShoppingDetailsContainer background-color="yellow">
+              <ShoppingDetailsContainer backgroundColor="yellow">
                 <Timer weight="fill" color="#ffffff" />
               </ShoppingDetailsContainer>
               <span>Entrega rápida e rastreada</span>
             </li>
             <li>
-              <ShoppingDetailsContainer background-color="purple">
+              <ShoppingDetailsContainer backgroundColor="purple">
                 <Coffee weight="fill" color="#ffffff" />
               </ShoppingDetailsContainer>
               <span>O café chega fresquinho até você</span>

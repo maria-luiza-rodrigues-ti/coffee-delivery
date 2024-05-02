@@ -99,15 +99,15 @@ export const ImageIntroSection = styled.div`
   }
 `
 
-const BACKGROUND_COLORS = {
+export const BACKGROUND_COLORS = {
   'yellow-dark': 'yellow-dark',
   yellow: 'yellow',
   'base-text': 'base-text',
   purple: 'purple'
 } as const;
 
-interface BackgroundColorProps {
-  "background-color" : keyof typeof BACKGROUND_COLORS;
+export interface BackgroundColorProps {
+  "backgroundColor" : keyof typeof BACKGROUND_COLORS;
 }
 
 export const ShoppingDetailsContainer = styled.div<BackgroundColorProps>`
@@ -115,7 +115,7 @@ export const ShoppingDetailsContainer = styled.div<BackgroundColorProps>`
 
   border-radius: 50%;
 
-  background: ${(props) => props.theme[BACKGROUND_COLORS[props['background-color']]]};
+  background: ${(props) => props.theme[BACKGROUND_COLORS[props['backgroundColor']]]};
 
   display: flex;
   align-items: center;
