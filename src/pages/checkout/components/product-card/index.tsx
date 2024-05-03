@@ -25,6 +25,8 @@ export function ProductCard({ cartProduct }: ProductCardProps) {
     decrementProductQuantity,
     removeItemFromCart,
   } = useCart();
+  const totalProductPrice = cartProduct.totalPrice.toFixed(2).replace(".", ",");
+
   const productId = cartProduct.id;
 
   function handleDecrementProductQuantity(
@@ -71,7 +73,7 @@ export function ProductCard({ cartProduct }: ProductCardProps) {
         </QuantityContainer>
       </ProductDetailsContainer>
       <div>
-        <ProductPrice>R$ 9,90</ProductPrice>
+        <ProductPrice>R$ {totalProductPrice}</ProductPrice>
       </div>
     </ProductCardContainer>
   );
