@@ -13,7 +13,14 @@ import { ProductCard } from "./components/product-card";
 import { useCart } from "../../hooks/useCart";
 
 export function Checkout() {
-  const { cartItems } = useCart();
+  const { cartItems, productsTotalPrice, deliveryPrice, cartTotalPrice } =
+    useCart();
+
+  const productsTotalPriceFormatted = productsTotalPrice
+    .toFixed(2)
+    .replace(".", ",");
+  const deliveryPriceFormatted = deliveryPrice.toFixed(2).replace(".", ",");
+  const cartTotalPriceFormatted = cartTotalPrice.toFixed(2).replace(".", ",");
 
   return (
     <CheckoutContainer>
@@ -31,15 +38,15 @@ export function Checkout() {
           <ResumeContainer>
             <li>
               <span>Total de itens</span>
-              <span>R$ 29,70</span>
+              <span>R$ {productsTotalPriceFormatted}</span>
             </li>
             <li>
-              <span>Entrego</span>
-              <span>R$ 3,50</span>
+              <span>Entrega</span>
+              <span>R$ {deliveryPriceFormatted}</span>
             </li>
             <li>
               <strong>Total</strong>
-              <strong>R$ 33,20</strong>
+              <strong>R$ {cartTotalPriceFormatted}</strong>
             </li>
           </ResumeContainer>
           <ConfirmOrderButton>Confirmar pedido</ConfirmOrderButton>

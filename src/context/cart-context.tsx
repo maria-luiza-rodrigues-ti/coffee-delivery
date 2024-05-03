@@ -9,6 +9,9 @@ export interface CartItem extends CoffeeProps {
 interface ProductContextProps {
   cartItems: CartItem[];
   numberOfCartItems: number;
+  productsTotalPrice: number;
+  deliveryPrice: number;
+  cartTotalPrice: number;
   addItemToCart: (product: CartItem) => void;
   incrementProductQuantity: (id: number) => void;
   decrementProductQuantity: (id: number) => void;
@@ -81,6 +84,14 @@ export function CartContextProvider({ children }: ProductContextProviderProps) {
     setCartItems(newCartItems);
   }
 
+  const productsTotalPrice = cartItems.reduce((accumulator, item) => {
+    return accumulator + item.totalPrice;
+  }, 0);
+
+  const deliveryPrice = 3.5;
+
+  const cartTotalPrice = productsTotalPrice + deliveryPrice;
+
   return (
     <CartContext.Provider
       value={{
@@ -90,6 +101,9 @@ export function CartContextProvider({ children }: ProductContextProviderProps) {
         incrementProductQuantity,
         decrementProductQuantity,
         removeItemFromCart,
+        productsTotalPrice,
+        deliveryPrice,
+        cartTotalPrice,
       }}
     >
       {children}
