@@ -2,7 +2,6 @@ import { MouseEvent } from "react";
 
 import { Minus, Plus, Trash } from "@phosphor-icons/react";
 import { CartItem } from "../../../../context/cart-context";
-import { CoffeeQuantity } from "../../../../components/quantity/styles";
 
 import {
   ProductCardContainer,
@@ -10,6 +9,7 @@ import {
   QuantityContainer,
   RemoveButton,
   ProductPrice,
+  CoffeeQuantity,
 } from "./styles";
 
 import { useCart } from "../../../../hooks/useCart";

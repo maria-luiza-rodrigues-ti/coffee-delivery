@@ -1,3 +1,5 @@
+import { useState, MouseEvent } from "react";
+
 import { Minus, Plus, ShoppingCart } from "@phosphor-icons/react";
 import {
   CoffeeCardContainer,
@@ -7,11 +9,10 @@ import {
   CoffeePriceContainer,
   CoffeePrice,
   CartButton,
+  CoffeeQuantity,
 } from "./styles";
 
 import { CoffeeProps } from "../..";
-import { CoffeeQuantity } from "../../../../components/quantity/styles";
-import { useState } from "react";
 import { useCart } from "../../../../hooks/useCart";
 
 interface CoffeeCardProps {
@@ -22,12 +23,16 @@ export function CoffeeCard({ coffee }: CoffeeCardProps) {
   const { addItemToCart } = useCart();
   const [productQuantity, setProductQuantity] = useState(1);
 
-  function removeProductQuantity() {
+  function removeProductQuantity(event: MouseEvent) {
+    event?.preventDefault();
+
     if (productQuantity === 0) return;
 
     setProductQuantity((state) => state - 1);
   }
-  function addProductQuantity() {
+  function addProductQuantity(event: MouseEvent) {
+    event?.preventDefault();
+
     setProductQuantity((state) => state + 1);
   }
 
