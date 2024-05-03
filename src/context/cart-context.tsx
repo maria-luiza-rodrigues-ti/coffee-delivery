@@ -1,15 +1,13 @@
 import { ReactNode, createContext, useState } from "react";
-// import { CoffeeProps } from "../pages/home";
+import { CoffeeProps } from "../pages/home";
 
-// interface CartItem extends CoffeeProps {
-//   quantity: number;
-// }
+interface CartItem extends CoffeeProps {
+  quantity: number;
+}
 
 interface ProductContextProps {
-  // cartItems: CartItem[];
-  cartItemQuantity: number;
-  incrementProductQuantity: (productQuantity: number) => void;
-  decrementProductQuantity: (productQuantity: number) => void;
+  cartItems: CartItem[];
+  addItemToCart: (product: CartItem) => void;
 }
 
 export const CartContext = createContext({} as ProductContextProps);
@@ -19,26 +17,35 @@ interface ProductContextProviderProps {
 }
 
 export function CartContextProvider({ children }: ProductContextProviderProps) {
-  // const [cartItems, setCartItems] = useState<CartItem[]>([]);
-  const [cartItemQuantity, setCartItemQuantity] = useState(1);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
-  function incrementProductQuantity(productQuantity: number) {
-    setCartItemQuantity(productQuantity + 1);
-  }
+  function addItemToCart(product: CartItem) {
+    const isProductAlreadyInTheCart = cartItems.find(
+      (item) => item.id === product.id
+    );
 
-  function decrementProductQuantity(productQuantity: number) {
-    if (productQuantity === 0) return;
+    if (isProductAlreadyInTheCart) {
+      const newCartItems = cartItems.map((item) => {
+        if (item.id === product.id) {
+          return {
+            ...item,
+            quantity: item.quantity + product.quantity,
+          };
+        }
+        return item;
+      });
 
-    setCartItemQuantity(productQuantity - 1);
+      setCartItems(newCartItems);
+    } else {
+      setCartItems([...cartItems, product]);
+    }
   }
 
   return (
     <CartContext.Provider
       value={{
-        /* cartItems, */
-        cartItemQuantity,
-        incrementProductQuantity,
-        decrementProductQuantity,
+        cartItems,
+        addItemToCart,
       }}
     >
       {children}

@@ -1,4 +1,4 @@
-import { ShoppingCart } from "@phosphor-icons/react";
+import { Minus, Plus, ShoppingCart } from "@phosphor-icons/react";
 import {
   CoffeeCardContainer,
   CoffeeTagsContainer,
@@ -10,15 +10,35 @@ import {
 } from "./styles";
 
 import { CoffeeProps } from "../..";
-import { Quantity } from "../../../../components/quantity";
+import { CoffeeQuantity } from "../../../../components/quantity/styles";
+import { useState } from "react";
+import { useCart } from "../../../../hooks/useCart";
 
 interface CoffeeCardProps {
   coffee: CoffeeProps;
 }
 
 export function CoffeeCard({ coffee }: CoffeeCardProps) {
+  const { addItemToCart } = useCart();
+  const [productQuantity, setProductQuantity] = useState(1);
+
+  function removeProductQuantity() {
+    if (productQuantity === 0) return;
+
+    setProductQuantity((state) => state - 1);
+  }
+  function addProductQuantity() {
+    setProductQuantity((state) => state + 1);
+  }
+
   function addProductToCart() {
-    console.log("oi");
+    const newProductAddedToCart = {
+      ...coffee,
+      quantity: productQuantity,
+    };
+
+    addItemToCart(newProductAddedToCart);
+    setProductQuantity(1);
   }
 
   return (
@@ -39,7 +59,15 @@ export function CoffeeCard({ coffee }: CoffeeCardProps) {
           R$ <span>{coffee.price}</span>
         </CoffeePrice>
         <div>
-          <Quantity />
+          <CoffeeQuantity>
+            <button onClick={removeProductQuantity}>
+              <Minus size={14} weight="bold" />
+            </button>
+            <span>{productQuantity}</span>
+            <button onClick={addProductQuantity}>
+              <Plus size={14} weight="bold" />
+            </button>
+          </CoffeeQuantity>
           <CartButton onClick={addProductToCart}>
             <ShoppingCart size={22} weight="fill" color="#ffffff" />
           </CartButton>
