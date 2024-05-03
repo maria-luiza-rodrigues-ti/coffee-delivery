@@ -49,6 +49,8 @@ export const CartButton = styled.button`
   border-radius: 6px;
 
   position: relative;
+
+  cursor: pointer;
   
   svg {
     fill: ${(props) => props.theme["yellow-dark"]};
