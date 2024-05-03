@@ -20,14 +20,19 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ cartProduct }: ProductCardProps) {
-  const { incrementProductQuantity, decrementProductQuantity } = useCart();
+  const {
+    incrementProductQuantity,
+    decrementProductQuantity,
+    removeItemFromCart,
+  } = useCart();
+  const productId = cartProduct.id;
 
   function handleDecrementProductQuantity(
     event: MouseEvent<HTMLButtonElement>
   ) {
     event.preventDefault();
 
-    decrementProductQuantity(cartProduct.id);
+    decrementProductQuantity(productId);
   }
 
   function handleIncrementProductQuantity(
@@ -35,7 +40,13 @@ export function ProductCard({ cartProduct }: ProductCardProps) {
   ) {
     event.preventDefault();
 
-    incrementProductQuantity(cartProduct.id);
+    incrementProductQuantity(productId);
+  }
+
+  function handleRemoveProduct(event: MouseEvent<HTMLButtonElement>) {
+    event.preventDefault();
+
+    removeItemFromCart(productId);
   }
 
   return (
@@ -53,7 +64,7 @@ export function ProductCard({ cartProduct }: ProductCardProps) {
               <Plus size={14} weight="bold" />
             </button>
           </CoffeeQuantity>
-          <RemoveButton>
+          <RemoveButton onClick={handleRemoveProduct}>
             <Trash size={16} />
             <span>Remover</span>
           </RemoveButton>

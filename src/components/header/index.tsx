@@ -14,7 +14,9 @@ export function Header() {
 
   return (
     <HeaderContainer>
-      <img src={Logo} />
+      <NavLink to="/" title="Home">
+        <img src={Logo} />
+      </NavLink>
 
       <LocationAndCartContainer className="location-cart_container">
         <LocationContainer className="location_container">

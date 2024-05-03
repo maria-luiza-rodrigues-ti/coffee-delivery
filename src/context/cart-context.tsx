@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useEffect, useState } from "react";
+import { ReactNode, createContext, useState } from "react";
 import { CoffeeProps } from "../pages/home";
 
 export interface CartItem extends CoffeeProps {
@@ -8,10 +8,11 @@ export interface CartItem extends CoffeeProps {
 
 interface ProductContextProps {
   cartItems: CartItem[];
-  addItemToCart: (product: CartItem) => void;
   numberOfCartItems: number;
+  addItemToCart: (product: CartItem) => void;
   incrementProductQuantity: (id: number) => void;
   decrementProductQuantity: (id: number) => void;
+  removeItemFromCart: (id: number) => void;
 }
 
 export const CartContext = createContext({} as ProductContextProps);
@@ -75,14 +76,10 @@ export function CartContextProvider({ children }: ProductContextProviderProps) {
     setCartItems(newCartItems);
   }
 
-  useEffect(() => {
-    const cartItemsLocalStorage = JSON.stringify(cartItems);
-
-    localStorage.setItem(
-      "@coffee-delivery:cart-items-1.0.0",
-      cartItemsLocalStorage
-    );
-  }, [cartItems]);
+  function removeItemFromCart(id: number) {
+    const newCartItems = cartItems.filter((item) => item.id !== id);
+    setCartItems(newCartItems);
+  }
 
   return (
     <CartContext.Provider
@@ -92,6 +89,7 @@ export function CartContextProvider({ children }: ProductContextProviderProps) {
         numberOfCartItems,
         incrementProductQuantity,
         decrementProductQuantity,
+        removeItemFromCart,
       }}
     >
       {children}
