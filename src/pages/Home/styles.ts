@@ -57,7 +57,6 @@ export const InfoIntroductionSection = styled.div`
   }
 
   p {
-    font-family: 'Roboto', sans-serif;
     font-size: 1.25rem;
     
     color: ${(props) => props.theme['base-subtitle']};
@@ -86,8 +85,6 @@ export const InfoIntroductionSection = styled.div`
   }
 
   span {
-    font-family: 'Roboto', sans-serif;
-    
     color: ${(props) => props.theme['base-text']};
   }
 `

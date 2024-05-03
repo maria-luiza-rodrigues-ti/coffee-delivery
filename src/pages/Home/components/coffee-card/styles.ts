@@ -37,7 +37,6 @@ export const CoffeeTags = styled.span`
   border-radius: 100px;
 
   color: ${(props) => props.theme['yellow-dark']};
-  font-family: 'Roboto', sans-serif;
   font-weight: 700;
   font-size: 0.625rem;
   
@@ -62,7 +61,6 @@ export const CoffeeDetailsContainer = styled.div`
   }
 
   p {
-    font-family: 'Roboto', sans-serif;
     font-size: .875rem;
     
     color: ${(props) => props.theme['base-label']};
@@ -86,7 +84,6 @@ export const CoffeePriceContainer = styled.div`
 `
 
 export const CoffeePrice = styled.span`
-  font-family: 'Roboto', sans-serif;
   font-size: .875rem;
   font-weight: 400;
   

@@ -34,7 +34,7 @@ export const CoffeeQuantity = styled.div`
 
   span {
     display: inline-block;
-    font-family: 'Roboto', sans-serif;
+
     
     color: ${(props) => props.theme['base-title']};
   }
