@@ -8,6 +8,7 @@ interface CartItem extends CoffeeProps {
 interface ProductContextProps {
   cartItems: CartItem[];
   addItemToCart: (product: CartItem) => void;
+  numberOfCartItems: number;
 }
 
 export const CartContext = createContext({} as ProductContextProps);
@@ -41,11 +42,16 @@ export function CartContextProvider({ children }: ProductContextProviderProps) {
     }
   }
 
+  const numberOfCartItems = cartItems.reduce((accumulator, item) => {
+    return accumulator + item.quantity;
+  }, 0);
+
   return (
     <CartContext.Provider
       value={{
         cartItems,
         addItemToCart,
+        numberOfCartItems,
       }}
     >
       {children}

@@ -6,8 +6,11 @@ import {
   LocationContainer,
   CartButton,
 } from "./styles";
+import { useCart } from "../../hooks/useCart";
 
 export function Header() {
+  const { numberOfCartItems } = useCart();
+
   return (
     <HeaderContainer>
       <img src={Logo} />
@@ -19,6 +22,12 @@ export function Header() {
         </LocationContainer>
         <CartButton>
           <ShoppingCart size={22} weight="fill" />
+
+          {numberOfCartItems > 0 && (
+            <div>
+              <span>{numberOfCartItems}</span>
+            </div>
+          )}
         </CartButton>
       </LocationAndCartContainer>
     </HeaderContainer>
