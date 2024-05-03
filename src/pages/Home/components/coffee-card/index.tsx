@@ -18,7 +18,7 @@ interface CoffeeCardProps {
 
 export function CoffeeCard({ coffee }: CoffeeCardProps) {
   function addProductToCart() {
-    console.log("Adicionado ao carrinho");
+    console.log("oi");
   }
 
   return (
