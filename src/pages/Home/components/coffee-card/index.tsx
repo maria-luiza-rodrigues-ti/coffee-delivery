@@ -35,6 +35,7 @@ export function CoffeeCard({ coffee }: CoffeeCardProps) {
     const newProductAddedToCart = {
       ...coffee,
       quantity: productQuantity,
+      totalPrice: parseFloat(coffee.price.replace(",", ".")) * productQuantity,
     };
 
     addItemToCart(newProductAddedToCart);

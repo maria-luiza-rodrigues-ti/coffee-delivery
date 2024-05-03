@@ -1,14 +1,17 @@
-import { ReactNode, createContext, useState } from "react";
+import { ReactNode, createContext, useEffect, useState } from "react";
 import { CoffeeProps } from "../pages/home";
 
-interface CartItem extends CoffeeProps {
+export interface CartItem extends CoffeeProps {
   quantity: number;
+  totalPrice: number;
 }
 
 interface ProductContextProps {
   cartItems: CartItem[];
   addItemToCart: (product: CartItem) => void;
   numberOfCartItems: number;
+  incrementProductQuantity: (id: number) => void;
+  decrementProductQuantity: (id: number) => void;
 }
 
 export const CartContext = createContext({} as ProductContextProps);
@@ -46,12 +49,49 @@ export function CartContextProvider({ children }: ProductContextProviderProps) {
     return accumulator + item.quantity;
   }, 0);
 
+  function incrementProductQuantity(id: number) {
+    const newCartItems = cartItems.map((item) => {
+      if (item.id === id) {
+        return {
+          ...item,
+          quantity: item.quantity + 1,
+        };
+      }
+      return item;
+    });
+    setCartItems(newCartItems);
+  }
+
+  function decrementProductQuantity(id: number) {
+    const newCartItems = cartItems.map((item) => {
+      if (item.id === id) {
+        return {
+          ...item,
+          quantity: item.quantity - 1,
+        };
+      }
+      return item;
+    });
+    setCartItems(newCartItems);
+  }
+
+  useEffect(() => {
+    const cartItemsLocalStorage = JSON.stringify(cartItems);
+
+    localStorage.setItem(
+      "@coffee-delivery:cart-items-1.0.0",
+      cartItemsLocalStorage
+    );
+  }, [cartItems]);
+
   return (
     <CartContext.Provider
       value={{
         cartItems,
         addItemToCart,
         numberOfCartItems,
+        incrementProductQuantity,
+        decrementProductQuantity,
       }}
     >
       {children}

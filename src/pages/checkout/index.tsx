@@ -10,8 +10,11 @@ import {
 
 import { FormTitle, FormContainer } from "./components/address-form/styles";
 import { ProductCard } from "./components/product-card";
+import { useCart } from "../../hooks/useCart";
 
 export function Checkout() {
+  const { cartItems } = useCart();
+
   return (
     <CheckoutContainer>
       <AddressForm />
@@ -21,8 +24,9 @@ export function Checkout() {
         <FormTitle>Cafés selecionados</FormTitle>
         <FormContainer>
           <ul>
-            <ProductCard />
-            <ProductCard />
+            {cartItems.map((item) => (
+              <ProductCard key={item.id} cartProduct={item} />
+            ))}
           </ul>
           <ResumeContainer>
             <li>

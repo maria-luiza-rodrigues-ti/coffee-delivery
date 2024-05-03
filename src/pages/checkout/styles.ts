@@ -80,6 +80,8 @@ export const ConfirmOrderButton = styled.button`
 
   transition: all .3s ease-in-out;
 
+  cursor: pointer;
+
   &:hover {
     background: ${(props) => props.theme['yellow-dark']};
   }
