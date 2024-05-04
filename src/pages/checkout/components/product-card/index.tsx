@@ -1,7 +1,8 @@
 import { MouseEvent } from "react";
 
 import { Minus, Plus, Trash } from "@phosphor-icons/react";
-import { CartItem } from "../../../../context/cart-context";
+import { useCart } from "../../../../hooks/useCart";
+import { CartItem } from "../../../../reducers/cart-items/reducer";
 
 import {
   ProductCardContainer,
@@ -11,8 +12,6 @@ import {
   ProductPrice,
   CoffeeQuantity,
 } from "./styles";
-
-import { useCart } from "../../../../hooks/useCart";
 
 interface ProductCardProps {
   cartProduct: CartItem;
