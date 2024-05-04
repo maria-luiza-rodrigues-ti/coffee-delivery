@@ -58,5 +58,7 @@ export const PaymentFormContainer = styled.form`
   background-color: ${(props) => props.theme['base-card']};
 
   border-radius: 6px;
+
+  width: 100%;
   
 `

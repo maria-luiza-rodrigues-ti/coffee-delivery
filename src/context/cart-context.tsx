@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useState } from "react";
+import { ReactNode, createContext, useReducer } from "react";
 import { CoffeeProps } from "../pages/home";
 
 export interface CartItem extends CoffeeProps {
@@ -21,28 +21,72 @@ interface ProductContextProviderProps {
 }
 
 export function CartContextProvider({ children }: ProductContextProviderProps) {
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [cartItems, dispatch] = useReducer((state: CartItem[], action: any) => {
+    switch (action.type) {
+      case "ADD_TO_CART": {
+        const isProductAlreadyInTheCart = state.find(
+          (item) => item.id === action.payload.product.id
+        );
 
-  function addItemToCart(product: CartItem) {
-    const isProductAlreadyInTheCart = cartItems.find(
-      (item) => item.id === product.id
-    );
+        if (isProductAlreadyInTheCart) {
+          return state.map((item) => {
+            if (item.id === action.payload.product.id) {
+              return {
+                ...item,
+                quantity: item.quantity + action.payload.product.quantity,
+              };
+            }
+            return item;
+          });
+        } else {
+          return [...state, action.payload.product];
+        }
+      }
 
-    if (isProductAlreadyInTheCart) {
-      setCartItems((state) => {
+      case "INCREMENT_PRODUCT": {
         return state.map((item) => {
-          if (item.id === product.id) {
+          if (item.id === action.payload.product.id) {
             return {
               ...item,
-              quantity: item.quantity + product.quantity,
+              quantity: item.quantity + 1,
             };
           }
           return item;
         });
-      });
-    } else {
-      setCartItems([...cartItems, product]);
+      }
+
+      case "DECREMENT_PRODUCT": {
+        return state.map((item) => {
+          if (item.id === action.payload.product.id) {
+            return {
+              ...item,
+              quantity: item.quantity - 1,
+            };
+          }
+          return item;
+        });
+      }
+
+      case "REMOVE_FROM_CART": {
+        return state.filter((item) => item.id !== action.payload.product.id);
+      }
+
+      default: {
+        return state;
+      }
     }
+  }, []);
+
+  console.log(cartItems);
+
+  function addItemToCart(product: CartItem) {
+    dispatch({
+      type: "ADD_TO_CART",
+      payload: {
+        product,
+      },
+    });
   }
 
   const numberOfCartItems = cartItems.reduce((accumulator, item) => {
@@ -50,39 +94,29 @@ export function CartContextProvider({ children }: ProductContextProviderProps) {
   }, 0);
 
   function incrementProductQuantity(product: CartItem) {
-    setCartItems((state) => {
-      return state.map((item) => {
-        if (item.id === product.id) {
-          return {
-            ...item,
-            quantity: item.quantity + 1,
-          };
-        }
-        return item;
-      });
+    dispatch({
+      type: "INCREMENT_PRODUCT",
+      payload: {
+        product,
+      },
     });
   }
 
   function decrementProductQuantity(product: CartItem) {
-    setCartItems((state) => {
-      return state.map((item) => {
-        if (item.id === product.id) {
-          return {
-            ...item,
-            quantity: item.quantity - 1,
-          };
-        }
-
-        return item;
-      });
+    dispatch({
+      type: "DECREMENT_PRODUCT",
+      payload: {
+        product,
+      },
     });
   }
 
   function removeItemFromCart(product: CartItem) {
-    setCartItems((state) => {
-      return state.filter((item) => {
-        return item.id !== product.id;
-      });
+    dispatch({
+      type: "REMOVE_FROM_CART",
+      payload: {
+        product,
+      },
     });
   }
 

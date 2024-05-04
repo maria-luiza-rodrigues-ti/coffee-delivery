@@ -37,6 +37,10 @@ export function ProductCard({ cartProduct }: ProductCardProps) {
   ) {
     event.preventDefault();
 
+    if (cartProduct.quantity === 1) {
+      removeItemFromCart(cartProduct);
+    }
+
     decrementProductQuantity(cartProduct);
   }
 
