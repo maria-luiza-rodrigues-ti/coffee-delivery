@@ -11,6 +11,8 @@ export const CheckoutContainer = styled.main`
   justify-content: center;
   gap: 2rem;
 
+  a { text-decoration: none}
+
   @media  (min-width: 1200px) {
     margin: 0 auto 10rem;
 
@@ -77,6 +79,7 @@ export const ConfirmOrderButton = styled.button`
   font-size: .875rem;
   font-weight: 700;
   text-transform: uppercase;
+  text-decoration: none;
 
   transition: all .3s ease-in-out;
 

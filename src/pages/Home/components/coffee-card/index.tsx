@@ -40,12 +40,15 @@ export function CoffeeCard({ coffee }: CoffeeCardProps) {
     const newProductAddedToCart = {
       ...coffee,
       quantity: productQuantity,
-      totalPrice: parseFloat(coffee.price.replace(",", ".")) * productQuantity,
     };
 
     addItemToCart(newProductAddedToCart);
     setProductQuantity(1);
   }
+
+  const productPriceFormatted = coffee.price.toLocaleString("pt-br", {
+    minimumFractionDigits: 2,
+  });
 
   return (
     <CoffeeCardContainer key={coffee.id}>
@@ -62,7 +65,7 @@ export function CoffeeCard({ coffee }: CoffeeCardProps) {
       </CoffeeDetailsContainer>
       <CoffeePriceContainer>
         <CoffeePrice>
-          R$ <span>{coffee.price}</span>
+          R$ <span>{productPriceFormatted}</span>
         </CoffeePrice>
         <div>
           <CoffeeQuantity>

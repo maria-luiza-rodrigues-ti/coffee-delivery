@@ -25,16 +25,19 @@ export function ProductCard({ cartProduct }: ProductCardProps) {
     decrementProductQuantity,
     removeItemFromCart,
   } = useCart();
-  const totalProductPrice = cartProduct.totalPrice.toFixed(2).replace(".", ",");
 
-  const productId = cartProduct.id;
+  const totalProductPrice = cartProduct.price * cartProduct.quantity;
+  const totalProductPriceFormatted = totalProductPrice.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  });
 
   function handleDecrementProductQuantity(
     event: MouseEvent<HTMLButtonElement>
   ) {
     event.preventDefault();
 
-    decrementProductQuantity(productId);
+    decrementProductQuantity(cartProduct);
   }
 
   function handleIncrementProductQuantity(
@@ -42,13 +45,13 @@ export function ProductCard({ cartProduct }: ProductCardProps) {
   ) {
     event.preventDefault();
 
-    incrementProductQuantity(productId);
+    incrementProductQuantity(cartProduct);
   }
 
   function handleRemoveProduct(event: MouseEvent<HTMLButtonElement>) {
     event.preventDefault();
 
-    removeItemFromCart(productId);
+    removeItemFromCart(cartProduct);
   }
 
   return (
@@ -73,7 +76,7 @@ export function ProductCard({ cartProduct }: ProductCardProps) {
         </QuantityContainer>
       </ProductDetailsContainer>
       <div>
-        <ProductPrice>R$ {totalProductPrice}</ProductPrice>
+        <ProductPrice>{totalProductPriceFormatted}</ProductPrice>
       </div>
     </ProductCardContainer>
   );

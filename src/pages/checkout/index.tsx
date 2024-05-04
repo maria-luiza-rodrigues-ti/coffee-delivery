@@ -11,16 +11,33 @@ import {
 import { FormTitle, FormContainer } from "./components/address-form/styles";
 import { ProductCard } from "./components/product-card";
 import { useCart } from "../../hooks/useCart";
+import { NavLink } from "react-router-dom";
 
 export function Checkout() {
-  const { cartItems, productsTotalPrice, deliveryPrice, cartTotalPrice } =
-    useCart();
+  const { cartItems } = useCart();
 
-  const productsTotalPriceFormatted = productsTotalPrice
-    .toFixed(2)
-    .replace(".", ",");
-  const deliveryPriceFormatted = deliveryPrice.toFixed(2).replace(".", ",");
-  const cartTotalPriceFormatted = cartTotalPrice.toFixed(2).replace(".", ",");
+  const shippingPrice = 3.5;
+  const shippingPriceFormatted = shippingPrice.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  });
+
+  const totalProductsPrice = cartItems.reduce((total, product) => {
+    return total + product.price * product.quantity;
+  }, 0);
+  const totalProductsPriceFormatted = totalProductsPrice.toLocaleString(
+    "pt-BR",
+    {
+      style: "currency",
+      currency: "BRL",
+    }
+  );
+
+  const totalCartPrice = totalProductsPrice + shippingPrice;
+  const totalCartPriceFormatted = totalCartPrice.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  });
 
   return (
     <CheckoutContainer>
@@ -38,18 +55,20 @@ export function Checkout() {
           <ResumeContainer>
             <li>
               <span>Total de itens</span>
-              <span>R$ {productsTotalPriceFormatted}</span>
+              <span>{totalProductsPriceFormatted}</span>
             </li>
             <li>
               <span>Entrega</span>
-              <span>R$ {deliveryPriceFormatted}</span>
+              <span>{shippingPriceFormatted}</span>
             </li>
             <li>
               <strong>Total</strong>
-              <strong>R$ {cartTotalPriceFormatted}</strong>
+              <strong>{totalCartPriceFormatted}</strong>
             </li>
           </ResumeContainer>
-          <ConfirmOrderButton>Confirmar pedido</ConfirmOrderButton>
+          <NavLink to="/success" title="Success">
+            <ConfirmOrderButton>Confirmar pedido</ConfirmOrderButton>
+          </NavLink>
         </FormContainer>
       </OrderResumeContainer>
     </CheckoutContainer>

@@ -22,7 +22,7 @@ export interface CoffeeProps {
   tags: string[];
   title: string;
   description: string;
-  price: string;
+  price: number;
 }
 
 export function Home() {

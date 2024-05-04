@@ -3,19 +3,15 @@ import { CoffeeProps } from "../pages/home";
 
 export interface CartItem extends CoffeeProps {
   quantity: number;
-  totalPrice: number;
 }
 
 interface ProductContextProps {
   cartItems: CartItem[];
   numberOfCartItems: number;
-  productsTotalPrice: number;
-  deliveryPrice: number;
-  cartTotalPrice: number;
   addItemToCart: (product: CartItem) => void;
-  incrementProductQuantity: (id: number) => void;
-  decrementProductQuantity: (id: number) => void;
-  removeItemFromCart: (id: number) => void;
+  incrementProductQuantity: (product: CartItem) => void;
+  decrementProductQuantity: (product: CartItem) => void;
+  removeItemFromCart: (product: CartItem) => void;
 }
 
 export const CartContext = createContext({} as ProductContextProps);
@@ -33,17 +29,17 @@ export function CartContextProvider({ children }: ProductContextProviderProps) {
     );
 
     if (isProductAlreadyInTheCart) {
-      const newCartItems = cartItems.map((item) => {
-        if (item.id === product.id) {
-          return {
-            ...item,
-            quantity: item.quantity + product.quantity,
-          };
-        }
-        return item;
+      setCartItems((state) => {
+        return state.map((item) => {
+          if (item.id === product.id) {
+            return {
+              ...item,
+              quantity: item.quantity + product.quantity,
+            };
+          }
+          return item;
+        });
       });
-
-      setCartItems(newCartItems);
     } else {
       setCartItems([...cartItems, product]);
     }
@@ -53,44 +49,42 @@ export function CartContextProvider({ children }: ProductContextProviderProps) {
     return accumulator + item.quantity;
   }, 0);
 
-  function incrementProductQuantity(id: number) {
-    const newCartItems = cartItems.map((item) => {
-      if (item.id === id) {
-        return {
-          ...item,
-          quantity: item.quantity + 1,
-        };
-      }
-      return item;
+  function incrementProductQuantity(product: CartItem) {
+    setCartItems((state) => {
+      return state.map((item) => {
+        if (item.id === product.id) {
+          return {
+            ...item,
+            quantity: item.quantity + 1,
+          };
+        }
+        return item;
+      });
     });
-    setCartItems(newCartItems);
   }
 
-  function decrementProductQuantity(id: number) {
-    const newCartItems = cartItems.map((item) => {
-      if (item.id === id) {
-        return {
-          ...item,
-          quantity: item.quantity - 1,
-        };
-      }
-      return item;
+  function decrementProductQuantity(product: CartItem) {
+    setCartItems((state) => {
+      return state.map((item) => {
+        if (item.id === product.id) {
+          return {
+            ...item,
+            quantity: item.quantity - 1,
+          };
+        }
+
+        return item;
+      });
     });
-    setCartItems(newCartItems);
   }
 
-  function removeItemFromCart(id: number) {
-    const newCartItems = cartItems.filter((item) => item.id !== id);
-    setCartItems(newCartItems);
+  function removeItemFromCart(product: CartItem) {
+    setCartItems((state) => {
+      return state.filter((item) => {
+        return item.id !== product.id;
+      });
+    });
   }
-
-  const productsTotalPrice = cartItems.reduce((accumulator, item) => {
-    return accumulator + item.totalPrice;
-  }, 0);
-
-  const deliveryPrice = 3.5;
-
-  const cartTotalPrice = productsTotalPrice + deliveryPrice;
 
   return (
     <CartContext.Provider
@@ -101,9 +95,6 @@ export function CartContextProvider({ children }: ProductContextProviderProps) {
         incrementProductQuantity,
         decrementProductQuantity,
         removeItemFromCart,
-        productsTotalPrice,
-        deliveryPrice,
-        cartTotalPrice,
       }}
     >
       {children}
