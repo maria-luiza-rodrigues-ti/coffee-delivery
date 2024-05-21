@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useReducer } from "react";
+import { ReactNode, createContext, useEffect, useReducer } from "react";
 import { CartItem, CartItemsReducer } from "../reducers/cart-items/reducer";
 import {
   addToCartAction,
@@ -22,8 +22,27 @@ interface ProductContextProviderProps {
 }
 
 export function CartContextProvider({ children }: ProductContextProviderProps) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [cartItems, dispatch] = useReducer(CartItemsReducer, []);
+  const [cartItems, dispatch] = useReducer(
+    CartItemsReducer,
+    [],
+    (initialState) => {
+      const storedStateAsJSON = localStorage.getItem(
+        "@coffee-delivery:cart-state-1.0.0"
+      );
+
+      if (storedStateAsJSON) {
+        return JSON.parse(storedStateAsJSON);
+      }
+
+      return initialState;
+    }
+  );
+
+  useEffect(() => {
+    const stateJSON = JSON.stringify(cartItems);
+
+    localStorage.setItem("@coffee-delivery:cart-state-1.0.0", stateJSON);
+  });
 
   function addItemToCart(product: CartItem) {
     dispatch(addToCartAction(product));

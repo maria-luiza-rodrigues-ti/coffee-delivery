@@ -26,6 +26,7 @@ export function CartItemsReducer(state: CartItem[], action: Actions) {
             }
             return item;
           });
+          
         } else {
           return [...state, action.payload.product];
         }
