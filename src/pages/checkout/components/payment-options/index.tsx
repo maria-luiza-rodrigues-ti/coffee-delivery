@@ -1,6 +1,7 @@
-import { CreditCard, Bank, Money, CurrencyDollar } from "@phosphor-icons/react";
+import { CurrencyDollar } from "@phosphor-icons/react";
 import { PaymentFormContainer, PaymentOptionsContainer } from "./styles";
 import { PaymentFormTitleContainer } from "../../styles";
+import { InputRadio } from "./components/input-radio";
 
 export function PaymentOptions() {
   return (
@@ -15,24 +16,9 @@ export function PaymentOptions() {
         </div>
       </PaymentFormTitleContainer>
       <PaymentOptionsContainer>
-        <li>
-          <button>
-            <CreditCard size={22} />
-            <span>Cartão de crédito</span>
-          </button>
-        </li>
-        <li>
-          <button>
-            <Bank size={22} />
-            <span>Cartão de débito</span>
-          </button>
-        </li>
-        <li>
-          <button>
-            <Money size={22} />
-            <span>Dinheiro</span>
-          </button>
-        </li>
+        <InputRadio value={"Cartão de crédito"} />
+        <InputRadio value={"Cartão de débito"} />
+        <InputRadio value={"Dinheiro"} />
       </PaymentOptionsContainer>
     </PaymentFormContainer>
   );

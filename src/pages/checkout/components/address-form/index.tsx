@@ -32,10 +32,10 @@ const AddressFormValidationSchema = z.object({
     .max(2, "UF deve ter duas letras"),
 });
 
-type AddressFormData = z.infer<typeof AddressFormValidationSchema>;
+export type AddressFormData = z.infer<typeof AddressFormValidationSchema>;
 
 export function AddressForm() {
-  const { register, handleSubmit } = useForm<AddressFormData>({
+  const { register, handleSubmit, reset } = useForm<AddressFormData>({
     resolver: zodResolver(AddressFormValidationSchema),
     defaultValues: {
       cep: null,
@@ -51,6 +51,8 @@ export function AddressForm() {
   function handleAddressSubmit(data: AddressFormData) {
     const stringifiedData = JSON.stringify(data);
     localStorage.setItem("@coffee-delivery:address", stringifiedData);
+
+    reset();
   }
 
   return (
